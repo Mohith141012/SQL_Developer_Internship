@@ -1,0 +1,6 @@
+[Authors]---<writes>---[BookAuthor]---<written_by>---[Books]
+                                   |
+                                   |
+                             [Borrowed in]
+                                   |
+[Members]---<borrows>----[Borrow]----<managed_by>---[Staff]
