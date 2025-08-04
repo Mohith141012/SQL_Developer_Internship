@@ -1,0 +1,61 @@
+""" For creating the database named 'Library' """
+
+                                                                        CREATE DATABASE Library;
+
+""" access the repositary of Library database """
+
+                                                                            USE Library;
+
+""" Adding details of Author in a table """
+
+                                                                    CREATE TABLE Authors (
+                                                                              author_id INT PRIMARY KEY AUTO_INCREMENT,
+                                                                              name VARCHAR(100) NOT NULL,
+                                                                              country VARCHAR(50)
+                                                                    );
+
+
+""" Adding details of Books in a table """
+                                                                    CREATE TABLE Books (
+                                                                                book_id INT PRIMARY KEY AUTO_INCREMENT,
+                                                                                title VARCHAR(255) NOT NULL,
+                                                                                genre VARCHAR(50),
+                                                                                publication_year INT
+                                                                    );
+
+""" Adding details of BookAuthor (Many-to-Many between Books and Authors) in a table """
+                                                                      CREATE TABLE BookAuthor (
+                                                                                book_id INT,
+                                                                                author_id INT,
+                                                                                PRIMARY KEY (book_id, author_id),
+                                                                                FOREIGN KEY (book_id) REFERENCES Books(book_id),
+                                                                                FOREIGN KEY (author_id) REFERENCES Authors(author_id)
+                                                                      );
+
+""" Adding details of Members in a table """
+                                                                      CREATE TABLE Members (
+                                                                                member_id INT PRIMARY KEY AUTO_INCREMENT,
+                                                                                name VARCHAR(100) NOT NULL,
+                                                                                email VARCHAR(100) UNIQUE NOT NULL,
+                                                                                membership_date DATE
+                                                                      );
+
+""" Adding details of Staff in a table """
+                                                                      CREATE TABLE Staff (
+                                                                                  staff_id INT PRIMARY KEY AUTO_INCREMENT,
+                                                                                  name VARCHAR(100),
+                                                                                  role VARCHAR(50)
+                                                                      );
+
+""" Adding details of in a Borrow Table (Many-to-Many between Members and Books with extra attributes)"""
+                                                                      CREATE TABLE Borrow (
+                                                                                    borrow_id INT PRIMARY KEY AUTO_INCREMENT,
+                                                                                    member_id INT,
+                                                                                    book_id INT,
+                                                                                    staff_id INT,
+                                                                                    borrow_date DATE,
+                                                                                    return_date DATE,
+                                                                                    FOREIGN KEY (member_id) REFERENCES Members(member_id),
+                                                                                    FOREIGN KEY (book_id) REFERENCES Books(book_id),
+                                                                                    FOREIGN KEY (staff_id) REFERENCES Staff(staff_id)
+                                                                        );
