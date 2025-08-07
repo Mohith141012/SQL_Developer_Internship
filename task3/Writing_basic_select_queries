@@ -1,0 +1,62 @@
+-- Task 3: Writing Basic SELECT Queries
+
+-- Step 1: Create sample table
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName TEXT,
+    Category TEXT,
+    Price REAL,
+    Stock INT
+);
+
+-- Step 2: Insert sample data
+INSERT INTO Products (ProductID, ProductName, Category, Price, Stock) VALUES
+(1, 'Laptop', 'Electronics', 75000, 10),
+(2, 'Phone', 'Electronics', 30000, 50),
+(3, 'Desk Chair', 'Furniture', 5000, 20),
+(4, 'Notebook', 'Stationery', 50, 200),
+(5, 'Pen', 'Stationery', 10, 500),
+(6, 'Tablet', 'Electronics', 20000, 15),
+(7, 'Monitor', 'Electronics', 12000, 8),
+(8, 'Cupboard', 'Furniture', 10000, 5);
+
+-- Step 3: SELECT Queries
+
+-- 1. Select all columns from Products
+SELECT * FROM Products;
+
+-- 2. Select specific columns: ProductName and Price
+SELECT ProductName, Price FROM Products;
+
+-- 3. Use WHERE to filter rows (Electronics category)
+SELECT * FROM Products
+WHERE Category = 'Electronics';
+
+-- 4. Use AND to filter (Electronics and Price > 15000)
+SELECT * FROM Products
+WHERE Category = 'Electronics' AND Price > 15000;
+
+-- 5. Use OR to filter (Price < 100 OR Stock > 100)
+SELECT * FROM Products
+WHERE Price < 100 OR Stock > 100;
+
+-- 6. Use LIKE to search for names containing 'top'
+SELECT * FROM Products
+WHERE ProductName LIKE '%top%';
+
+-- 7. Use BETWEEN to find products within price range
+SELECT * FROM Products
+WHERE Price BETWEEN 10000 AND 30000;
+
+-- 8. Use ORDER BY to sort products by price ascending
+SELECT * FROM Products
+ORDER BY Price ASC;
+
+-- 9. Use ORDER BY with DESC to sort by stock descending
+SELECT * FROM Products
+ORDER BY Stock DESC;
+
+-- 10. Use LIMIT to show only top 3 cheapest products
+SELECT * FROM Products
+ORDER BY Price ASC
+LIMIT 3;
