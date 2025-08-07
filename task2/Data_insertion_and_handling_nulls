@@ -1,0 +1,40 @@
+-- Task 2: Data Insertion and Handling Nulls
+
+-- Step 1: Create a sample table
+CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Department VARCHAR(50),
+    Salary DECIMAL(10, 2),
+    Email VARCHAR(100)
+);
+
+-- Step 2: Insert data, including some NULL values
+INSERT INTO Employees (EmpID, Name, Department, Salary, Email) VALUES
+(101, 'Alice', 'HR', 50000.00, 'alice@example.com'),
+(102, 'Bob', NULL, 60000.00, NULL),
+(103, 'Charlie', 'Finance', NULL, 'charlie@example.com'),
+(104, NULL, 'IT', 55000.00, 'unknown@example.com');
+
+-- Step 3: Update data to handle NULLs
+-- Set Department for Bob to 'Marketing'
+UPDATE Employees
+SET Department = 'Marketing'
+WHERE EmpID = 102;
+
+-- Set Salary for Charlie to 58000.00
+UPDATE Employees
+SET Salary = 58000.00
+WHERE Name = 'Charlie';
+
+-- Set default name for NULL Name
+UPDATE Employees
+SET Name = 'Unnamed'
+WHERE Name IS NULL;
+
+-- Step 4: Delete a record (e.g., delete record where salary is NULL or very low)
+DELETE FROM Employees
+WHERE Salary IS NULL OR Salary < 30000;
+
+
+SELECT * FROM Employees;
